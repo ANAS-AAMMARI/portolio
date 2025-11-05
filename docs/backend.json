@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "Message": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Message",
+      "type": "object",
+      "description": "Represents a direct message sent through the contact section of the portfolio.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the message."
+        },
+        "senderName": {
+          "type": "string",
+          "description": "Name of the person sending the message."
+        },
+        "senderEmail": {
+          "type": "string",
+          "description": "Email address of the sender.",
+          "format": "email"
+        },
+        "messageText": {
+          "type": "string",
+          "description": "The actual content of the message."
+        },
+        "sentAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the message was sent.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "senderName",
+        "senderEmail",
+        "messageText",
+        "sentAt"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/messages/{messageId}",
+        "definition": {
+          "entityName": "Message",
+          "schema": {
+            "$ref": "#/backend/entities/Message"
+          },
+          "description": "Stores direct messages sent through the contact section. No denormalized fields are necessary, as access is public. The messageId parameter is the unique identifier for each message.",
+          "params": [
+            {
+              "name": "messageId",
+              "description": "The unique identifier for the message."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "To support direct messaging from the contact section, a top-level collection `/messages` is used. Each document in this collection represents a single message. No user-specific subcollections are necessary because the messages are sent directly from the contact form without requiring authentication and therefore can be treated as public data for receiving. This structure allows for straightforward querying and management of messages. It avoids Authorization Independence concerns since access is not based on specific user roles, and all security rules will apply uniformly to all messages in the collection. The structure supports the required QAPs because the entire collection uses the same security posture."
+  }
+}

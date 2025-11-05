@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import { EasterEggTerminal } from "@/components/easter-egg-terminal";
 import "./globals.css";
+import { FirebaseClientProvider } from "@/firebase/client-provider";
 
 export const metadata: Metadata = {
   title: "Cyber Portfolio",
@@ -21,9 +22,11 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-code antialiased">
-        {children}
-        <Toaster />
-        <EasterEggTerminal />
+        <FirebaseClientProvider>
+          {children}
+          <Toaster />
+          <EasterEggTerminal />
+        </FirebaseClientProvider>
       </body>
     </html>
   );

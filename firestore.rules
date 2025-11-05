@@ -1,0 +1,32 @@
+/**
+ * @file Firestore Security Rules for Direct Messages
+ * @corePhilosophy This ruleset governs access to direct messages sent through the contact section.
+ * @dataStructure Messages are stored in a top-level `/messages` collection.
+ * @keySecurityDecisions Messages can be created by anyone (no authentication required) and are publicly readable, but cannot be updated or deleted by clients.
+ * @denormalizationForAuthorization N/A: No authorization checks are necessary for create or read operations, as the collection is intended for public consumption.
+ * @structuralSegregation N/A: All messages are stored in a single collection.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Manages access to individual message documents in the `/messages` collection.
+     * @path /messages/{messageId}
+     * @allow (create) Anyone can send a direct message (unauthenticated).
+     * @allow (get, list) Anyone can read any message.
+     * @deny (update, delete) No one can update or delete messages after creation.
+     * @principle Allows unauthenticated message submission and public read access for received messages.
+     */
+    match /messages/{messageId} {
+      // Allow anyone to read any message
+      allow get, list: if true;
+
+      // Allow anyone to create a message. In a production environment, consider rate limiting.
+      allow create: if true;
+
+      // No one can update or delete messages
+      allow update, delete: if false;
+    }
+  }
+}
