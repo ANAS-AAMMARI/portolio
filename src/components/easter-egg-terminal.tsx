@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "./ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 type HistoryItem = {
   type: "command" | "response" | "system";
@@ -89,20 +90,20 @@ export function EasterEggTerminal() {
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="w-full max-w-3xl h-[70vh] bg-background border-2 border-primary/50 rounded-lg shadow-glow-primary flex flex-col overflow-hidden">
-        <header className="flex items-center justify-between p-2 border-b border-primary/30">
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="w-full max-w-3xl h-[70vh] bg-background border-2 border-primary/50 rounded-lg shadow-glow-primary flex flex-col overflow-hidden p-0">
+        <DialogHeader className="flex items-center justify-between p-2 border-b border-primary/30">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Terminal className="w-4 h-4 text-primary" />
-            <span>SECRET_TERMINAL.EGG</span>
+            <DialogTitle>SECRET_TERMINAL.EGG</DialogTitle>
           </div>
           <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-6 w-6">
             <X className="w-4 h-4" />
           </Button>
-        </header>
+        </DialogHeader>
+        
+        <DialogDescription className="sr-only">A hidden terminal for interacting with the portfolio's AI.</DialogDescription>
         
         <ScrollArea className="flex-1 p-4 text-sm font-mono" ref={scrollAreaRef}>
           {history.map((item, index) => (
@@ -142,7 +143,7 @@ export function EasterEggTerminal() {
             />
           </form>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

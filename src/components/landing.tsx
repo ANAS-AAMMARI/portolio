@@ -11,10 +11,10 @@ export function Landing() {
       <div className="p-4">
         <div className="text-2xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
           <span className="text-foreground/80">$ </span>
-          <Typewriter text="whoami" delay={500} />
+          <Typewriter key="whoami" text="whoami" delay={500} />
         </div>
         <div className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-          <Typewriter text="Anas Aammari" delay={1500} speed={75} />
+          <Typewriter key="name" text="Anas Aammari" delay={1500} speed={75} />
         </div>
         <p className="text-lg md:text-xl lg:text-2xl text-foreground/80 max-w-3xl mx-auto mb-8">
             Software Engineer | Problem Solver | AI Explorer

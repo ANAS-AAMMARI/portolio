@@ -16,9 +16,6 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        code: ['Fira Code', 'monospace'],
-      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

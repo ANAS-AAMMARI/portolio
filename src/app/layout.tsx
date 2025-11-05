@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
+import { Fira_Code } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { EasterEggTerminal } from "@/components/easter-egg-terminal";
 import { FirebaseClientProvider } from "@/firebase/client-provider";
+import { cn } from "@/lib/utils";
 import "./globals.css";
+
+const firaCode = Fira_Code({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Cyber Portfolio",
@@ -16,12 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" style={{ scrollBehavior: 'smooth' }}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-code antialiased">
+      <body className={cn(firaCode.className, "antialiased")}>
         <FirebaseClientProvider>
           {children}
         </FirebaseClientProvider>
