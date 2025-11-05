@@ -1,68 +1,45 @@
 {
   "entities": {
     "Message": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Message",
+      "description": "A message sent from the contact form.",
       "type": "object",
-      "description": "Represents a direct message sent through the contact section of the portfolio.",
       "properties": {
-        "id": {
+        "name": {
           "type": "string",
-          "description": "Unique identifier for the message."
+          "description": "The name of the sender."
         },
-        "senderName": {
+        "email": {
           "type": "string",
-          "description": "Name of the person sending the message."
+          "format": "email",
+          "description": "The email of the sender."
         },
-        "senderEmail": {
+        "phone": {
           "type": "string",
-          "description": "Email address of the sender.",
-          "format": "email"
+          "description": "The phone number of the sender."
         },
-        "messageText": {
+        "message": {
           "type": "string",
-          "description": "The actual content of the message."
+          "description": "The message content."
         },
-        "sentAt": {
+        "createdAt": {
           "type": "string",
-          "description": "Timestamp indicating when the message was sent.",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The timestamp when the message was created."
         }
       },
-      "required": [
-        "id",
-        "senderName",
-        "senderEmail",
-        "messageText",
-        "sentAt"
-      ]
+      "required": ["name", "email", "message", "createdAt"]
     }
   },
   "auth": {
-    "providers": [
-      "password",
-      "anonymous"
-    ]
+    "providers": []
   },
   "firestore": {
-    "structure": [
-      {
-        "path": "/messages/{messageId}",
-        "definition": {
-          "entityName": "Message",
-          "schema": {
-            "$ref": "#/backend/entities/Message"
-          },
-          "description": "Stores direct messages sent through the contact section. No denormalized fields are necessary, as access is public. The messageId parameter is the unique identifier for each message.",
-          "params": [
-            {
-              "name": "messageId",
-              "description": "The unique identifier for the message."
-            }
-          ]
-        }
-      }
-    ],
-    "reasoning": "To support direct messaging from the contact section, a top-level collection `/messages` is used. Each document in this collection represents a single message. No user-specific subcollections are necessary because the messages are sent directly from the contact form without requiring authentication and therefore can be treated as public data for receiving. This structure allows for straightforward querying and management of messages. It avoids Authorization Independence concerns since access is not based on specific user roles, and all security rules will apply uniformly to all messages in the collection. The structure supports the required QAPs because the entire collection uses the same security posture."
+    "/messages/{messageId}": {
+      "schema": {
+        "$ref": "#/entities/Message"
+      },
+      "description": "Stores messages sent from the contact form."
+    }
   }
 }

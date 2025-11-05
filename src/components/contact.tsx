@@ -18,7 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Github, Linkedin, Mail, Send, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
 import { saveMessage } from "@/firebase/firestore/messages";
-import { useFirebase } from "@/firebase";
+import { useFirebase } from "@/firebase/provider";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
