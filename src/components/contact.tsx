@@ -17,8 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Github, Linkedin, Mail, Send, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
-import { saveMessage } from "@/firebase/firestore/messages";
-import { useFirebase } from "@/firebase/provider";
+import { Card } from "@/components/ui/card";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -57,7 +56,6 @@ const contactInfo = [
 
 export function Contact() {
   const { toast } = useToast();
-  const { firestore } = useFirebase();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -70,29 +68,14 @@ export function Contact() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    if (!firestore) {
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "Firestore is not available. Please try again later.",
-      });
-      return;
-    }
-    try {
-      await saveMessage(firestore, values);
-      toast({
-        title: "Message sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
-      });
-      form.reset();
-    } catch (error) {
-      console.error("Error sending message:", error);
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "Could not send your message. Please try again.",
-      });
-    }
+    // This is a mock submission. In a real app, you'd send this to your backend.
+    console.log(values);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    toast({
+      title: "Message sent!",
+      description: "Thanks for reaching out. I'll get back to you soon.",
+    });
+    form.reset();
   }
 
   return (
@@ -196,7 +179,3 @@ export function Contact() {
     </section>
   );
 }
-
-// Add Card component for structure, it is not imported by default
-import { Card } from "@/components/ui/card";
-import { use, useEffect } from "react";
