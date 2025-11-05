@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" style={{ scrollBehavior: 'smooth' }}>
-      <body className={cn(firaCode.className, "antialiased")}>
+    <html lang="en" className="dark" style={{ scrollBehavior: 'smooth' }} suppressHydrationWarning>
+      <body className={cn(firaCode.className, "antialiased")} suppressHydrationWarning>
         <FirebaseClientProvider>
           {children}
         </FirebaseClientProvider>

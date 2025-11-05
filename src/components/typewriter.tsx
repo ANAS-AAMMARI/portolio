@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type TypewriterProps = {
   text: string;
@@ -21,33 +21,54 @@ export function Typewriter({
   const [isTyping, setIsTyping] = useState(true);
   const [showCursor, setShowCursor] = useState(true);
 
+  // Use refs to hold timer IDs
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<NodeJS.Timer | null>(null);
+
   useEffect(() => {
-    const startTyping = () => {
+    // Clear any existing timers from previous renders to prevent race conditions
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
+    // Reset state for the new text
+    setDisplayedText("");
+    setIsTyping(true);
+
+    // Start typing after the initial delay
+    timeoutRef.current = setTimeout(() => {
       let i = 0;
-      const intervalId = setInterval(() => {
+      intervalRef.current = setInterval(() => {
         if (i < text.length) {
+          // Use functional update to ensure we have the latest state
           setDisplayedText((prev) => prev + text.charAt(i));
           i++;
         } else {
-          clearInterval(intervalId);
+          if (intervalRef.current) clearInterval(intervalRef.current);
           setIsTyping(false);
         }
       }, speed);
-    };
+    }, delay);
 
-    const timeoutId = setTimeout(startTyping, delay);
-
+    // Main cleanup function for when the component unmounts or dependencies change
     return () => {
-      clearTimeout(timeoutId);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, [text, speed, delay]);
 
+  // Effect for blinking cursor when typing is finished
   useEffect(() => {
     if (!isTyping) {
       const cursorInterval = setInterval(() => {
         setShowCursor((prev) => !prev);
-      }, 500);
+      }, 500); // Standard cursor blink speed
       return () => clearInterval(cursorInterval);
+    } else {
+        setShowCursor(true); // Ensure cursor is visible while typing
     }
   }, [isTyping]);
 
@@ -57,7 +78,6 @@ export function Typewriter({
       {showCursor && (
         <span
           className={cursorClassName}
-          style={{ animation: isTyping ? "none" : "blink 1s infinite" }}
         >
           _
         </span>
