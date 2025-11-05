@@ -17,8 +17,6 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['Fira Code', 'monospace'],
-        headline: ['Fira Code', 'monospace'],
         code: ['Fira Code', 'monospace'],
       },
       colors: {
