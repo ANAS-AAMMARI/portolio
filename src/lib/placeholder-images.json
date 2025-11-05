@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "project-1",
+      "description": "A visualization of a complex neural network.",
+      "imageUrl": "https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxuZXVyYWwlMjBuZXR3b3JrfGVufDB8fHx8MTc2MjMzNzI0MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "neural network"
+    },
+    {
+      "id": "project-2",
+      "description": "Abstract representation of data streams and cloud infrastructure.",
+      "imageUrl": "https://images.unsplash.com/photo-1622716348593-f198ed1d5e29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxkYXRhJTIwY2xvdWR8ZW58MHx8fHwxNzYyMzQ0MDc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data cloud"
+    },
+    {
+      "id": "project-3",
+      "description": "A system architecture diagram on a digital interface.",
+      "imageUrl": "https://images.unsplash.com/photo-1709546698483-ab379d159048?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzeXN0ZW0lMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzYyMjQ3NzY4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "system architecture"
+    }
+  ]
 }
