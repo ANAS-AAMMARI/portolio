@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { EasterEggTerminal } from "@/components/easter-egg-terminal";
-import { FirebaseClientProvider } from "@/firebase/client-provider";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
@@ -13,7 +12,8 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
   title: "Cyber Portfolio",
-  description: "Anas Aammari - Software Engineer | Problem Solver | AI Explorer",
+  description:
+    "Anas Aammari - Software Engineer | Problem Solver | AI Explorer",
 };
 
 export default function RootLayout({
@@ -22,11 +22,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" style={{ scrollBehavior: 'smooth' }} suppressHydrationWarning>
-      <body className={cn(firaCode.className, "antialiased")} suppressHydrationWarning>
-        <FirebaseClientProvider>
-          {children}
-        </FirebaseClientProvider>
+    <html
+      lang="en"
+      className="dark"
+      style={{ scrollBehavior: "smooth" }}
+      suppressHydrationWarning
+    >
+      <body
+        className={cn(firaCode.className, "antialiased")}
+        suppressHydrationWarning
+      >
+        {children}
         <Toaster />
         <EasterEggTerminal />
       </body>

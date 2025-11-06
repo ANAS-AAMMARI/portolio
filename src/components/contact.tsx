@@ -18,8 +18,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Github, Linkedin, Mail, Send, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
-import { saveMessage } from "@/firebase/firestore/messages";
-import { useFirebase } from "@/firebase/provider";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -58,7 +56,6 @@ const contactInfo = [
 
 export function Contact() {
   const { toast } = useToast();
-  const { firestore } = useFirebase();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -71,7 +68,11 @@ export function Contact() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    saveMessage(firestore, values);
+    await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
     toast({
       title: "Message sent!",
       description: "Thanks for reaching out. I'll get back to you soon.",
