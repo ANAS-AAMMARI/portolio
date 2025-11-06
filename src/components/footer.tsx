@@ -9,13 +9,28 @@ export function Footer() {
           &copy; {new Date().getFullYear()} Anas Aammari. All rights reserved.
         </div>
         <div className="flex items-center gap-4">
-          <Link href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Github">
+          <Link
+            href="https://github.com/ANAS-AAMMARI"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Github"
+          >
             <Github className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
           </Link>
-          <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <Link
+            href="https://www.linkedin.com/in/anas-aammari-66b619176/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
             <Linkedin className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
           </Link>
-          <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <Link
+            href="https://x.com/3a2mari"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X"
+          >
             <Twitter className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
           </Link>
         </div>

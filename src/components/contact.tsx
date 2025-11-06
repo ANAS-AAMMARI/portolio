@@ -29,32 +29,32 @@ const formSchema = z.object({
 });
 
 const socialLinks = [
-    {
-        name: "Github",
-        href: "https://github.com",
-        icon: Github
-    },
-    {
-        name: "LinkedIn",
-        href: "https://linkedin.com",
-        icon: Linkedin
-    }
-]
+  {
+    name: "Github",
+    href: "https://github.com/ANAS-AAMMARI",
+    icon: Github,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/anas-aammari-66b619176/",
+    icon: Linkedin,
+  },
+];
 
 const contactInfo = [
-    {
-        value: "lemkharbechy@gmail.com",
-        icon: Mail
-    },
-    {
-        value: "+212 697 325 495",
-        icon: Phone
-    },
-    {
-        value: "Marrakech, Maroc",
-        icon: MapPin
-    }
-]
+  {
+    value: "anasaammari5@gmail.com",
+    icon: Mail,
+  },
+  {
+    value: "+212 762-566414",
+    icon: Phone,
+  },
+  {
+    value: "Marrakech, Maroc",
+    icon: MapPin,
+  },
+];
 
 export function Contact() {
   const { toast } = useToast();
@@ -88,28 +88,39 @@ export function Contact() {
       <div className="grid md:grid-cols-2 gap-12">
         <div className="space-y-8">
           <p className="text-muted-foreground">
-            I'm currently available for professional opportunities as a Full Stack developer. Don't hesitate to contact me to discuss your projects or for any other information.
+            I'm currently available for professional opportunities as a Full
+            Stack developer. Don't hesitate to contact me to discuss your
+            projects or for any other information.
           </p>
           <div className="space-y-4">
             {contactInfo.map((info, index) => (
-                <div key={index} className="flex items-center gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full border border-primary/20">
-                        <info.icon className="h-5 w-5 text-primary"/>
-                    </div>
-                    <span className="text-muted-foreground">{info.value}</span>
+              <div key={index} className="flex items-center gap-4">
+                <div className="bg-primary/10 p-3 rounded-full border border-primary/20">
+                  <info.icon className="h-5 w-5 text-primary" />
                 </div>
+                <span className="text-muted-foreground">{info.value}</span>
+              </div>
             ))}
           </div>
           <div>
             <p className="text-muted-foreground mb-4">Find me on:</p>
             <div className="flex gap-4">
-                {socialLinks.map((social) => (
-                    <Link key={social.name} href={social.href} target="_blank" rel="noopener noreferrer">
-                        <Button variant="outline" size="icon" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                            <social.icon className="h-5 w-5"/>
-                        </Button>
-                    </Link>
-                ))}
+              {socialLinks.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  >
+                    <social.icon className="h-5 w-5" />
+                  </Button>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -143,7 +154,7 @@ export function Contact() {
                   </FormItem>
                 )}
               />
-               <FormField
+              <FormField
                 control={form.control}
                 name="phone"
                 render={({ field }) => (
@@ -163,13 +174,21 @@ export function Contact() {
                   <FormItem>
                     <FormLabel>Message</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Your message" {...field} rows={5}/>
+                      <Textarea
+                        placeholder="Your message"
+                        {...field}
+                        rows={5}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={form.formState.isSubmitting}>
+              <Button
+                type="submit"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                disabled={form.formState.isSubmitting}
+              >
                 {form.formState.isSubmitting ? "Sending..." : "Send Message"}
                 <Send className="ml-2 h-4 w-4" />
               </Button>
