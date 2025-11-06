@@ -1,10 +1,10 @@
-
 "use client";
 
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import Image from "next/image";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -20,6 +20,14 @@ export function Header() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
+            <Image
+              src="/image.png"
+              alt="Anas Aammari logo"
+              width={28}
+              height={28}
+              className="h-16 w-16"
+              priority
+            />
             <span className="font-bold">Anas Aammari</span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -51,6 +59,14 @@ export function Header() {
           </SheetTrigger>
           <SheetContent side="left" className="pr-0 bg-background">
             <Link href="/" className="mr-6 flex items-center space-x-2 p-4">
+              <Image
+                src="/logo.svg"
+                alt="Anas Aammari logo"
+                width={28}
+                height={28}
+                className="h-7 w-7"
+                priority
+              />
               <span className="font-bold">Anas Aammari</span>
             </Link>
             <div className="my-4 h-[1px] w-full shrink-0 bg-border" />
@@ -67,9 +83,9 @@ export function Header() {
             </div>
           </SheetContent>
         </Sheet>
-         <Link href="/" className="flex items-center space-x-2 md:hidden">
-            <span className="font-bold">Anas Aammari</span>
-          </Link>
+        <Link href="/" className="flex items-center space-x-2 md:hidden">
+          <span className="font-bold">Anas Aammari</span>
+        </Link>
       </div>
     </header>
   );
