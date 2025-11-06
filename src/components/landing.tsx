@@ -14,7 +14,7 @@ export function Landing() {
           <Typewriter key="whoami" text="whoami" delay={500} />
         </div>
         <div className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-          <Typewriter key="name" text="Anas Aammari" delay={1500} speed={75} />
+          <Typewriter key="name" text="Anas AAMMARI" delay={1500} speed={75} />
         </div>
         <p className="text-lg md:text-xl lg:text-2xl text-foreground/80 max-w-3xl mx-auto mb-8">
             Software Engineer | Problem Solver | AI Explorer

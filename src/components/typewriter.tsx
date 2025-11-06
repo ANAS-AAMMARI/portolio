@@ -22,8 +22,9 @@ export function Typewriter({
   const [showCursor, setShowCursor] = useState(true);
 
   // Use refs to hold timer IDs
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const intervalRef = useRef<NodeJS.Timer | null>(null);
+  const timeoutRef = useRef<number | null>(null);
+  const intervalRef = useRef<number | null>(null);
+  const indexRef = useRef(0);
 
   useEffect(() => {
     // Clear any existing timers from previous renders to prevent race conditions
@@ -37,17 +38,28 @@ export function Typewriter({
     // Reset state for the new text
     setDisplayedText("");
     setIsTyping(true);
+    setShowCursor(true);
+    indexRef.current = 0;
 
-    // Start typing after the initial delay
-    timeoutRef.current = setTimeout(() => {
-      let i = 0;
-      intervalRef.current = setInterval(() => {
-        if (i < text.length) {
-          // Use functional update to ensure we have the latest state
-          setDisplayedText((prev) => prev + text.charAt(i));
-          i++;
-        } else {
-          if (intervalRef.current) clearInterval(intervalRef.current);
+    const characters = Array.from(text);
+
+    if (characters.length === 0) {
+      setIsTyping(false);
+      return;
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
+      intervalRef.current = window.setInterval(() => {
+        const nextIndex = indexRef.current + 1;
+
+        setDisplayedText(characters.slice(0, nextIndex).join(""));
+        indexRef.current = nextIndex;
+
+        if (nextIndex >= characters.length) {
+          if (intervalRef.current !== null) {
+            window.clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
           setIsTyping(false);
         }
       }, speed);
@@ -55,8 +67,14 @@ export function Typewriter({
 
     // Main cleanup function for when the component unmounts or dependencies change
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (timeoutRef.current !== null) {
+        window.clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      if (intervalRef.current !== null) {
+        window.clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
   }, [text, speed, delay]);
 
@@ -68,20 +86,14 @@ export function Typewriter({
       }, 500); // Standard cursor blink speed
       return () => clearInterval(cursorInterval);
     } else {
-        setShowCursor(true); // Ensure cursor is visible while typing
+      setShowCursor(true); // Ensure cursor is visible while typing
     }
   }, [isTyping]);
 
   return (
     <span className={className}>
       {displayedText}
-      {showCursor && (
-        <span
-          className={cursorClassName}
-        >
-          _
-        </span>
-      )}
+      {showCursor && <span className={cursorClassName}>_</span>}
     </span>
   );
 }
