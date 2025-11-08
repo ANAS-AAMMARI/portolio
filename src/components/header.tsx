@@ -60,11 +60,11 @@ export function Header() {
           <SheetContent side="left" className="pr-0 bg-background">
             <Link href="/" className="mr-6 flex items-center space-x-2 p-4">
               <Image
-                src="/logo.svg"
+                src="/image.png"
                 alt="Anas Aammari logo"
                 width={28}
                 height={28}
-                className="h-7 w-7"
+                className="h-10 w-10"
                 priority
               />
               <span className="font-bold">Anas Aammari</span>
