@@ -16,19 +16,22 @@ const projects = [
   {
     id: "project-1",
     title: "Project Alpha",
-    description: "An AI-powered data analysis platform for enterprise solutions.",
+    description:
+      "An AI-powered data analysis platform for enterprise solutions.",
     tech: ["Next.js", "Python", "PyTorch", "Kubernetes"],
   },
   {
     id: "project-2",
     title: "Project Beta",
-    description: "Decentralized cloud storage system with end-to-end encryption.",
+    description:
+      "Decentralized cloud storage system with end-to-end encryption.",
     tech: ["Go", "React", "IPFS", "Docker"],
   },
   {
     id: "project-3",
     title: "Project Gamma",
-    description: "Real-time threat detection engine using machine learning models.",
+    description:
+      "Real-time threat detection engine using machine learning models.",
     tech: ["Rust", "Kafka", "scikit-learn", "GCP"],
   },
 ];
@@ -41,9 +44,14 @@ export function Projects() {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => {
-          const placeholder = PlaceHolderImages.find(p => p.id === project.id);
+          const placeholder = PlaceHolderImages.find(
+            (p) => p.id === project.id
+          );
           return (
-            <Card key={project.id} className="bg-card/80 border-primary/20 hover:border-primary/60 transition-colors duration-300 flex flex-col">
+            <Card
+              key={project.id}
+              className="bg-card/80 border-primary/20 hover:border-primary/60 transition-colors duration-300 flex flex-col"
+            >
               <CardHeader>
                 {placeholder && (
                   <div className="aspect-video relative mb-4">
@@ -51,6 +59,7 @@ export function Projects() {
                       src={placeholder.imageUrl}
                       alt={project.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="rounded-t-lg object-cover"
                       data-ai-hint={placeholder.imageHint}
                     />
@@ -62,14 +71,21 @@ export function Projects() {
               <CardContent className="flex-grow">
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
-                    <Badge key={tech} variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                    <Badge
+                      key={tech}
+                      variant="secondary"
+                      className="bg-primary/10 text-primary border-primary/20"
+                    >
                       {tech}
                     </Badge>
                   ))}
                 </div>
               </CardContent>
               <CardFooter>
-                <Button variant="outline" className="w-full text-primary border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+                <Button
+                  variant="outline"
+                  className="w-full text-primary border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                >
                   Access <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </CardFooter>

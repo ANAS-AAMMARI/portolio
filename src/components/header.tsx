@@ -26,11 +26,12 @@ export function Header() {
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Image
-              src="/image.png"
+              src="/4.png"
               alt="Anas Aammari logo"
               width={28}
               height={28}
-              className="h-16 w-16"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="h-[80px] w-[80px]"
               priority
             />
             <span className="font-bold">Anas Aammari</span>
@@ -69,6 +70,7 @@ export function Header() {
                 alt="Anas Aammari logo"
                 width={28}
                 height={28}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="h-10 w-10"
                 priority
               />
