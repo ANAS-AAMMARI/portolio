@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
 import Image from "next/image";
 
 const navLinks = [
@@ -72,13 +77,14 @@ export function Header() {
             <div className="my-4 h-[1px] w-full shrink-0 bg-border" />
             <div className="flex flex-col space-y-2 p-4">
               {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="transition-colors hover:text-primary py-2"
-                >
-                  {link.label}
-                </Link>
+                <SheetClose key={link.href} asChild>
+                  <Link
+                    href={link.href}
+                    className="py-2 transition-colors hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                </SheetClose>
               ))}
             </div>
           </SheetContent>
