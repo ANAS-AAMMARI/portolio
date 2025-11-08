@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { EasterEggTerminal } from "@/components/easter-egg-terminal";
+import { AnimatedDocumentTitle } from "@/components/animated-document-title";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
@@ -11,9 +12,9 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Cyber Portfolio",
+  title: "Mind of Code",
   description:
-    "Anas Aammari - Software Engineer | Problem Solver | AI Explorer",
+    "Where curiosity meets creativity — building intelligent systems for a smarter world.",
 };
 
 export default function RootLayout({
@@ -35,6 +36,7 @@ export default function RootLayout({
         {children}
         <Toaster />
         <EasterEggTerminal />
+        <AnimatedDocumentTitle />
       </body>
     </html>
   );
