@@ -75,12 +75,12 @@ const createCardVariants = (glow: string, softGlow: string): Variants => ({
   }),
 });
 
-const generateMatrixRows = () =>
-  Array.from({ length: MATRIX_ROWS }, () =>
-    Array.from({ length: MATRIX_COLUMNS }, () =>
-      Math.random() > 0.5 ? "0" : "1"
-    ).join(" ")
-  );
+// const generateMatrixRows = () =>
+//   Array.from({ length: MATRIX_ROWS }, () =>
+//     Array.from({ length: MATRIX_COLUMNS }, () =>
+//       Math.random() > 0.5 ? "0" : "1"
+//     ).join(" ")
+//   );
 
 const skillData: SkillCategory[] = [
   {
@@ -182,9 +182,9 @@ export function Skills() {
     return () => clearInterval(blinkTimer);
   }, []);
 
-  useEffect(() => {
-    setMatrixRows(generateMatrixRows());
-  }, []);
+  // useEffect(() => {
+  //   setMatrixRows(generateMatrixRows());
+  // }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -199,20 +199,23 @@ export function Skills() {
   }, []);
 
   return (
-    <section id="skills" className="relative overflow-hidden py-24 lg:px-2">
+    <section
+      id="skills"
+      className="relative overflow-hidden py-24 lg:px-2 bg-transparent"
+    >
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <motion.div
           className="absolute inset-[-35%] flex flex-col gap-4 font-mono text-[10px] uppercase tracking-[0.65em] text-primary/10"
           animate={{ y: ["0%", "25%"] }}
           transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
         >
-          {matrixRows.map((row, index) => (
+          {/* {matrixRows.map((row, index) => (
             <span key={index} className="select-none opacity-40">
               {row}
             </span>
-          ))}
+          ))} */}
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />{" "}
       </div>
 
       <motion.h2
