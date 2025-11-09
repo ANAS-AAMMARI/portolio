@@ -149,7 +149,7 @@ export function Skills() {
   const [typed, setTyped] = useState("");
   const [cursorVisible, setCursorVisible] = useState(true);
   const [bootReady, setBootReady] = useState(false);
-  const [matrixRows, setMatrixRows] = useState<string[]>([]);
+  // const [matrixRows, setMatrixRows] = useState<string[]>([]);
   const [themeColors, setThemeColors] =
     useState<ThemePalette>(DEFAULT_THEME_COLORS);
 
