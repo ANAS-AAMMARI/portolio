@@ -158,6 +158,22 @@ export function Skills() {
     [themeColors.glow, themeColors.softGlow]
   );
 
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const sectionInView = useInView(sectionRef, { amount: 0.35 });
+  const matrixControls = useAnimation();
+
+  useEffect(() => {
+    if (sectionInView) {
+      matrixControls.start({
+        y: ["0%", "25%"],
+        transition: { duration: 36, repeat: Infinity, ease: "linear" },
+      });
+    } else {
+      matrixControls.stop();
+      matrixControls.set({ y: "0%" });
+    }
+  }, [sectionInView, matrixControls]);
+
   useEffect(() => {
     if (typed.length === FULL_PROMPT.length) {
       return;
@@ -200,21 +216,16 @@ export function Skills() {
 
   return (
     <section
+      ref={sectionRef}
       id="skills"
       className="relative overflow-hidden py-24 lg:px-2 bg-transparent"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <motion.div
           className="absolute inset-[-35%] flex flex-col gap-4 font-mono text-[10px] uppercase tracking-[0.65em] text-primary/10"
-          animate={{ y: ["0%", "25%"] }}
-          transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
-        >
-          {/* {matrixRows.map((row, index) => (
-            <span key={index} className="select-none opacity-40">
-              {row}
-            </span>
-          ))} */}
-        </motion.div>
+          initial={{ y: "0%" }}
+          animate={matrixControls}
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />{" "}
       </div>
 
