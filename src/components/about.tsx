@@ -4,21 +4,17 @@ import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Code, User } from "lucide-react";
+import { motion } from "framer-motion";
 
 const humanBio = {
   bio: "I’m AAMMARI Anas, a passionate software engineer and computer science student driven by curiosity and creativity. Deeply connected to the ever-evolving world of technology, I love exploring its newest frontiers — from Artificial Intelligence and Data Science to System Engineering. With a strong foundation in mathematics and an insatiable desire to learn, I thrive on turning complex problems into elegant, innovative solutions that make a real impact.",
-  interests: [
-    "Artificial Intelligence",
-    "Data Science",
-    "System Engineering",
-    "Cybersecurity",
-  ],
+  interests: ["Artificial Intelligence", "Data Science", "System Engineering"],
 };
 
 const devBio = {
   "user.bio":
     "SoftwareEngineer(passion=MAX, problem_solving_ability=EXCEPTIONAL)",
-  "user.focus": ["ai", "data_science", "systems"],
+  "user.focus": ["full stack", "AI", "data_science", "systems"],
   "user.status": "Caffeinated and coding",
   "config.mode": "production",
 };
