@@ -17,9 +17,9 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <About />
           <Education />
+          <Experience />
           <Projects />
           <Skills />
-          <Experience />
           <Contact />
         </div>
       </main>

@@ -14,52 +14,61 @@ import { motion, type Variants } from "framer-motion";
 
 const educationHistory = [
   {
-    id: "edu-bsc",
-    institution: "University of Technology",
-    degree: "Bachelor of Science in Computer Science",
-    range: "Sep 2021 - Jun 2025 (expected)",
+    id: "edu-master",
+    institution: "Faculty of Sciences Semlalia",
+    degree: "Master in Information Systems Engineering",
+    range: "2024 - Present",
+    location: "Marrakech, Morocco",
     summary:
-      "Specializing in Artificial Intelligence, Data Science, and Systems Engineering with a research focus on resilient distributed systems.",
-    focus: ["AI/ML", "Data Science", "Systems Engineering"],
+      "Advanced studies in information systems engineering with focus on modern IT solutions and enterprise architecture.",
+    focus: ["Information Systems", "Systems Engineering"],
     highlights: [
-      "Dean's List (2022-2024)",
-      "Research assistant for the Autonomous Infrastructure Lab",
-      "Capstone: Scalable reinforcement learning for edge orchestration",
+      "Currently pursuing master's degree",
+      "Focus on enterprise-level systems",
     ],
-    note: "GPA: 3.9 / 4.0 · Member of the Cybersecurity Club",
     icon: GraduationCap,
   },
   {
-    id: "edu-bootcamp",
-    institution: "Cyber Academy",
-    degree: "Applied Cybersecurity Bootcamp",
-    range: "Summer 2023",
+    id: "edu-software",
+    institution: "1337 Coding School (42 Network)",
+    degree: "Software Engineering Program",
+    range: "2021 - Present",
+    location: "Khouribga, Morocco",
     summary:
-      "Immersive program covering offensive & defensive techniques, incident response, and secure DevOps pipelines.",
-    focus: ["Red Teaming", "Digital Forensics", "Cloud Security"],
+      "Immersive software engineering program with project-based learning and emphasis on practical coding skills.",
+    focus: ["Software Engineering", "Systems Programming"],
     highlights: [
-      "Led a team to build an automated threat hunting pipeline",
-      "Presented findings to the academy's SOC leadership",
-      "Awarded MVP for hands-on labs",
+      "42 Network peer-to-peer learning methodology",
+      "Hands-on project-based curriculum",
     ],
-    note: "Capstone: Autonomous detection and remediation workflow",
     icon: BookOpen,
   },
   {
-    id: "edu-specialization",
-    institution: "Open Learning Trust",
-    degree: "Distributed Systems Specialization",
-    range: "2022 - 2023",
+    id: "edu-bachelor",
+    institution: "Faculty of Sciences",
+    degree: "Professional Bachelor's Degree in Database Administration",
+    range: "2021 - 2022",
+    location: "El Jadida, Morocco",
     summary:
-      "Self-paced certifications focused on scalable microservices, observability, and resilient architecture patterns.",
-    focus: ["Kubernetes", "System Design", "Observability"],
-    highlights: [
-      "Implemented a multi-region service mesh playground",
-      "Designed an end-to-end monitoring stack with Prometheus & Grafana",
-      "Graduate with distinction",
-    ],
-    note: "Realtime telemetry & cost-optimized deployments",
+      "Professional program specializing in database systems, administration, and data management.",
+    focus: ["Database Administration", "Data Management"],
+    highlights: ["Professional bachelor's degree", "Focus on database systems"],
     icon: Sparkle,
+  },
+  {
+    id: "edu-diploma",
+    institution: "Specialized Institute of Applied Technology",
+    degree: "Diploma in Computer Development Techniques",
+    range: "2019 - 2021",
+    location: "Benguerir, Morocco",
+    summary:
+      "Technical diploma focusing on computer development fundamentals and applied technology practices.",
+    focus: ["Computer Development", "Applied Technology"],
+    highlights: [
+      "Foundation in development techniques",
+      "Applied technology focus",
+    ],
+    icon: GraduationCap,
   },
 ];
 
@@ -98,7 +107,13 @@ export function Education() {
         {educationHistory.map((entry) => {
           const Icon = entry.icon;
           return (
-            <motion.div key={entry.id} variants={cardVariants}>
+            <motion.div
+              key={entry.id}
+              variants={cardVariants}
+              whileHover={{ scale: 1.02, y: -3 }}
+              whileTap={{ scale: 0.995 }}
+              transition={{ type: "spring", stiffness: 240, damping: 24 }}
+            >
               <Card className="h-full bg-card/80 border border-primary/20 hover:border-primary/60 transition duration-300 shadow-lg shadow-primary/5">
                 <CardHeader className="space-y-3 pb-2">
                   <div className="flex items-center gap-3">
@@ -142,9 +157,9 @@ export function Education() {
                     ))}
                   </ul>
                 </CardContent>
-                <CardFooter className="text-xs text-primary/70">
+                {/* <CardFooter className="text-xs text-primary/70">
                   {entry.note}
-                </CardFooter>
+                </CardFooter> */}
               </Card>
             </motion.div>
           );

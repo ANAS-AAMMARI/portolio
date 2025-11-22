@@ -90,10 +90,10 @@ const skillData: SkillCategory[] = [
     skills: [
       { name: "React / Next.js", icon: Globe },
       { name: "Node.js / NestJS", icon: Globe },
+      { name: "Tailwind CSS", icon: Globe },
       { name: "Django", icon: Globe },
       { name: "Spring Boot", icon: Globe },
       { name: "REST & GraphQL APIs", icon: Globe },
-      { name: "Tailwind CSS", icon: Globe },
     ],
   },
   {
