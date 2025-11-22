@@ -75,13 +75,6 @@ const createCardVariants = (glow: string, softGlow: string): Variants => ({
   }),
 });
 
-// const generateMatrixRows = () =>
-//   Array.from({ length: MATRIX_ROWS }, () =>
-//     Array.from({ length: MATRIX_COLUMNS }, () =>
-//       Math.random() > 0.5 ? "0" : "1"
-//     ).join(" ")
-//   );
-
 const skillData: SkillCategory[] = [
   {
     name: "Programming",
@@ -89,18 +82,21 @@ const skillData: SkillCategory[] = [
     skills: [
       { name: "Python", icon: Code },
       { name: "JavaScript/TS", icon: Code },
-      { name: "Go", icon: Code },
-      { name: "Rust", icon: Code },
+      { name: "Java", icon: Code },
+      { name: "C++", icon: Code },
+      { name: "C", icon: Code },
     ],
   },
   {
-    name: "Web Dev",
-    tagline: "Frontend platforms & runtime tooling",
+    name: "Web Development",
+    tagline: "Frontend & Backend development",
     skills: [
-      { name: "React/Next.js", icon: Globe },
-      { name: "Node.js", icon: Globe },
+      { name: "React / Next.js", icon: Globe },
+      { name: "Node.js / NestJS", icon: Globe },
+      { name: "Django", icon: Globe },
+      { name: "Spring Boot", icon: Globe },
+      { name: "REST & GraphQL APIs", icon: Globe },
       { name: "Tailwind CSS", icon: Globe },
-      { name: "GraphQL", icon: Globe },
     ],
   },
   {
@@ -111,6 +107,8 @@ const skillData: SkillCategory[] = [
       { name: "scikit-learn", icon: BrainCircuit },
       { name: "GenAI", icon: BrainCircuit },
       { name: "Pandas", icon: BrainCircuit },
+      { name: "NumPy", icon: BrainCircuit },
+      { name: "TensorFlow", icon: BrainCircuit },
     ],
   },
   {
@@ -119,8 +117,9 @@ const skillData: SkillCategory[] = [
     skills: [
       { name: "Docker", icon: Rocket },
       { name: "Kubernetes", icon: Rocket },
-      { name: "GCP/AWS", icon: Rocket },
-      { name: "Terraform", icon: Rocket },
+      { name: "CI/CD", icon: Rocket },
+      { name: "vagrant", icon: Rocket },
+      { name: "GitHub Actions", icon: Rocket },
     ],
   },
   {
@@ -129,18 +128,18 @@ const skillData: SkillCategory[] = [
     skills: [
       { name: "PostgreSQL", icon: Database },
       { name: "MongoDB", icon: Database },
-      { name: "Redis", icon: Database },
-      { name: "Firebase", icon: Database },
+      { name: "MySQL", icon: Database },
+      { name: "Neo4j", icon: Database },
     ],
   },
   {
-    name: "Security",
-    tagline: "Offense, defense & hardening",
+    name: "Mobile Development",
+    tagline: "iOS & Android apps",
     skills: [
-      { name: "Network Security", icon: ShieldCheck },
-      { name: "AppSec", icon: ShieldCheck },
-      { name: "Pentesting", icon: ShieldCheck },
-      { name: "Cryptography", icon: ShieldCheck },
+      { name: "React Native", icon: Rocket },
+      { name: "Expo", icon: Rocket },
+      { name: "Flutter", icon: Rocket },
+      { name: "Android Studio", icon: Rocket },
     ],
   },
 ];
@@ -149,7 +148,6 @@ export function Skills() {
   const [typed, setTyped] = useState("");
   const [cursorVisible, setCursorVisible] = useState(true);
   const [bootReady, setBootReady] = useState(false);
-  // const [matrixRows, setMatrixRows] = useState<string[]>([]);
   const [themeColors, setThemeColors] =
     useState<ThemePalette>(DEFAULT_THEME_COLORS);
 
@@ -159,20 +157,6 @@ export function Skills() {
   );
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const sectionInView = useInView(sectionRef, { amount: 0.35 });
-  const matrixControls = useAnimation();
-
-  useEffect(() => {
-    if (sectionInView) {
-      matrixControls.start({
-        y: ["0%", "25%"],
-        transition: { duration: 36, repeat: Infinity, ease: "linear" },
-      });
-    } else {
-      matrixControls.stop();
-      matrixControls.set({ y: "0%" });
-    }
-  }, [sectionInView, matrixControls]);
 
   useEffect(() => {
     if (typed.length === FULL_PROMPT.length) {
@@ -198,10 +182,6 @@ export function Skills() {
     return () => clearInterval(blinkTimer);
   }, []);
 
-  // useEffect(() => {
-  //   setMatrixRows(generateMatrixRows());
-  // }, []);
-
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
@@ -224,7 +204,6 @@ export function Skills() {
         <motion.div
           className="absolute inset-[-35%] flex flex-col gap-4 font-mono text-[10px] uppercase tracking-[0.65em] text-primary/10"
           initial={{ y: "0%" }}
-          animate={matrixControls}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />{" "}
       </div>
