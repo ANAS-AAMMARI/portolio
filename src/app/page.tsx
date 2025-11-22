@@ -1,6 +1,7 @@
 import { Header } from "@/components/header";
 import { Landing } from "@/components/landing";
 import { About } from "@/components/about";
+import { Education } from "@/components/education";
 import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Experience } from "@/components/experience";
@@ -15,6 +16,7 @@ export default function Home() {
         <Landing />
         <div className="container mx-auto px-4 md:px-6">
           <About />
+          <Education />
           <Projects />
           <Skills />
           <Experience />

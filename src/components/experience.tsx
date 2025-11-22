@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { TerminalHeader } from "@/components/ui/terminal-header";
 
 const experienceLog = [
@@ -38,12 +39,33 @@ export function Experience() {
       />
       <div className="relative border-l-2 border-primary/30 pl-8 space-y-12">
         {experienceLog.map((entry, index) => (
-          <div key={index} className="relative">
-            <div className="absolute -left-10 h-4 w-4 bg-primary rounded-full border-4 border-background" />
+          <motion.div
+            key={index}
+            className="relative group border-b-0 rounded-lg"
+            whileHover={{
+              translateX: 2,
+              boxShadow: "0 12px 30px rgba(15,23,42,0.25)",
+              borderLeftWidth: "4px",
+              borderLeftColor: "#bfff00",
+              paddingLeft: ".5rem",
+              paddingTop: ".5rem",
+              paddingBottom: ".5rem",
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 35,
+              mass: 0.8,
+            }}
+          >
+            <div
+              aria-hidden
+              className="absolute -left-[33px] top-4 -translate-x-1/2 h-4 w-4 bg-primary rounded-full border-4 border-background transition-all duration-300 group-hover:w-6 group-hover:h-6 group-hover:-left-[38px]"
+            />
             <p className="text-sm text-primary/80 mb-1 font-semibold">{`[${entry.date}]`}</p>
             <h3 className="text-xl font-bold text-foreground">{entry.event}</h3>
             <p className="text-muted-foreground mt-1">{entry.details}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
