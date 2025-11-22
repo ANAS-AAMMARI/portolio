@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Github, Linkedin, Mail, Send, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
+import { TerminalHeader } from "@/components/ui/terminal-header";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -82,9 +83,10 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-24">
-      <h2 className="text-3xl font-bold mb-2 text-primary">
-        <span className="text-foreground/80">~/</span>contact $
-      </h2>
+      <TerminalHeader
+        prompt="~/contact $"
+        className="flex items-center text-3xl font-bold mb-2 text-primary"
+      />
       <p className="text-primary text-lg mb-8">Let's work together</p>
       <div className="grid md:grid-cols-2 gap-12">
         <div className="space-y-8">

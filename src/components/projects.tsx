@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { TerminalHeader } from "@/components/ui/terminal-header";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
@@ -115,12 +116,11 @@ export function Projects() {
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
-      <motion.h2
-        className="text-3xl font-bold mb-8 text-primary"
+      <TerminalHeader
+        prompt="~/projects $"
         variants={headingVariants}
-      >
-        <span className="text-foreground/80">~/</span>projects $
-      </motion.h2>
+        className="flex items-center text-3xl font-bold mb-8 text-primary"
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => {
           const placeholder = PlaceHolderImages.find(

@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { TerminalHeader } from "@/components/ui/terminal-header";
 import { Code, User } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -92,9 +93,7 @@ export function About() {
 
   return (
     <section id="about" className="py-24">
-      <h2 className="text-3xl font-bold mb-8 text-primary">
-        <span className="text-foreground/80">~/</span>about $
-      </h2>
+      <TerminalHeader prompt="~/about $" />
       <div className="flex items-center space-x-2 mb-8">
         <User
           className={`transition-colors duration-300 ${

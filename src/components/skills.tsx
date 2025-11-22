@@ -12,6 +12,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useAnimation, useInView, useSpring } from "framer-motion";
 import type { Variants } from "framer-motion";
 import type { MouseEvent as ReactMouseEvent } from "react";
+import { TerminalHeader } from "@/components/ui/terminal-header";
 
 type Skill = {
   name: string;
@@ -32,10 +33,6 @@ type ThemePalette = {
   subtle: string;
   accent: string;
 };
-
-const FULL_PROMPT = "~/skills $";
-const MATRIX_ROWS = 22;
-const MATRIX_COLUMNS = 50;
 const DEFAULT_PRIMARY_RAW = "172 67% 45%";
 const DEFAULT_THEME_COLORS: ThemePalette =
   buildThemePalette(DEFAULT_PRIMARY_RAW);
@@ -145,8 +142,6 @@ const skillData: SkillCategory[] = [
 ];
 
 export function Skills() {
-  const [typed, setTyped] = useState("");
-  const [cursorVisible, setCursorVisible] = useState(true);
   const [bootReady, setBootReady] = useState(false);
   const [themeColors, setThemeColors] =
     useState<ThemePalette>(DEFAULT_THEME_COLORS);
@@ -157,30 +152,6 @@ export function Skills() {
   );
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (typed.length === FULL_PROMPT.length) {
-      return;
-    }
-    const timeout = setTimeout(() => {
-      setTyped(FULL_PROMPT.slice(0, typed.length + 1));
-    }, 90);
-    return () => clearTimeout(timeout);
-  }, [typed]);
-
-  useEffect(() => {
-    if (typed.length === FULL_PROMPT.length) {
-      const bootTimer = setTimeout(() => setBootReady(true), 300);
-      return () => clearTimeout(bootTimer);
-    }
-  }, [typed]);
-
-  useEffect(() => {
-    const blinkTimer = setInterval(() => {
-      setCursorVisible((prev) => !prev);
-    }, 450);
-    return () => clearInterval(blinkTimer);
-  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -208,24 +179,7 @@ export function Skills() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />{" "}
       </div>
 
-      <motion.h2
-        className="mb-12 flex items-center text-3xl font-bold text-primary"
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-      >
-        <span className="text-primary">
-          <span className="text-foreground/80">{typed.slice(0, 2)}</span>
-          {typed.slice(2)}
-        </span>
-        <span
-          className={`ml-2 inline-block font-mono text-primary transition-opacity duration-150 ${
-            cursorVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          ▍
-        </span>
-      </motion.h2>
+      <TerminalHeader prompt="~/skills $" onReady={() => setBootReady(true)} />
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {skillData.map((category, index) => (
