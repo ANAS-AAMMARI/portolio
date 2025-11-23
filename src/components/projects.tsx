@@ -231,10 +231,10 @@ export function Projects() {
   return (
     <motion.section
       id="projects"
-      className="py-24"
+      className="py-12 md:py-24"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true }}
       variants={containerVariants}
     >
       <TerminalHeader
@@ -255,7 +255,7 @@ export function Projects() {
                   variants={cardStackVariants}
                   initial="hidden"
                   whileInView="show"
-                  viewport={{ once: true, amount: 0.6 }}
+                  viewport={{ once: true, margin: "-50px" }}
                 >
                   <CardHeader className="space-y-4">
                     {placeholder && (
