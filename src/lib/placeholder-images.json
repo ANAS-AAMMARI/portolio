@@ -2,21 +2,75 @@
   "placeholderImages": [
     {
       "id": "project-1",
-      "description": "A visualization of a complex neural network.",
-      "imageUrl": "https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxuZXVyYWwlMjBuZXR3b3JrfGVufDB8fHx8MTc2MjMzNzI0MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "neural network"
+      "description": "A modern, interactive portfolio website built with Next.js and Tailwind CSS.",
+      "imageUrl": "/porfolio.PNG",
+      "imageHint": "Personal Portfolio"
     },
     {
       "id": "project-2",
-      "description": "Abstract representation of data streams and cloud infrastructure.",
-      "imageUrl": "https://images.unsplash.com/photo-1622716348593-f198ed1d5e29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxkYXRhJTIwY2xvdWR8ZW58MHx8fHwxNzYyMzQ0MDc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "data cloud"
+      "description": "A large-scale platform built to support the fan experience for the 2030 FIFA World Cup in Morocco.",
+      "imageUrl": "https://images.unsplash.com/photo-1522770179533-24471fcdba45?w=800&q=80",
+      "imageHint": "stadium crowd football"
     },
     {
       "id": "project-3",
-      "description": "A system architecture diagram on a digital interface.",
-      "imageUrl": "https://images.unsplash.com/photo-1709546698483-ab379d159048?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzeXN0ZW0lMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzYyMjQ3NzY4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "system architecture"
+      "description": "A mobile application that helps users explore nearby restaurants and place food orders.",
+      "imageUrl": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80",
+      "imageHint": "food delivery app"
+    },
+    {
+      "id": "project-4",
+      "description": "A custom-built machine learning tool that performs predictive modeling.",
+      "imageUrl": "/Linear-regression.png",
+      "imageHint": "linear regression graph"
+    },
+    {
+      "id": "project-5",
+      "description": "A complete cinema booking system designed to highlight security flaws.",
+      "imageUrl": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&q=80",
+      "imageHint": "cinema theater"
+    },
+    {
+      "id": "project-6",
+      "description": "A real-time chat application offering smooth communication.",
+      "imageUrl": "https://images.unsplash.com/photo-1530811761207-8d9d22f0a141?w=800&q=80",
+      "imageHint": "chat application interface"
+    },
+    {
+      "id": "project-7",
+      "description": "A platform designed to streamline the evaluation process for academic internships.",
+      "imageUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
+      "imageHint": "digital evaluation form"
+    },
+    {
+      "id": "project-8",
+      "description": "A multiplayer gaming platform that blends real-time matches and social features.",
+      "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80",
+      "imageHint": "gaming controller pong"
+    },
+    {
+      "id": "project-9",
+      "description": "A backend project that generates intelligent suggestions by analyzing patterns.",
+      "imageUrl": "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&q=80",
+      "imageHint": "network connections recommendation"
+    },
+    {
+      "id": "project-10",
+      "description": "A computer vision solution that analyzes video feeds for social distancing.",
+      "imageUrl": "https://images.unsplash.com/photo-1584634731339-252c581abfc5?w=800&q=80",
+      "imageHint": "computer vision analysis"
+    },
+    {
+      "id": "project-11",
+      "description": "A full IRC communication server supporting multiple users and channels.",
+      "imageUrl": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&q=80",
+      "imageHint": "terminal server code"
+    },
+    {
+      "id": "project-12",
+      "description": "A containerized infrastructure project for secure web services.",
+      "imageUrl": "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&q=80",
+      "imageHint": "docker containers infrastructure"
     }
   ]
 }
