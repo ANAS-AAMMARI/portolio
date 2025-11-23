@@ -53,7 +53,7 @@ const educationHistory = [
       "Professional program specializing in database systems, administration, and data management.",
     focus: ["Database Administration", "Data Management"],
     highlights: ["Professional bachelor's degree", "Focus on database systems"],
-    icon: Sparkle,
+    icon: GraduationCap,
   },
   {
     id: "edu-diploma",

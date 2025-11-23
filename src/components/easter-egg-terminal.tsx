@@ -2,18 +2,53 @@
 
 import { useState, useEffect, useRef, FormEvent } from "react";
 import { X, Terminal, Bot } from "lucide-react";
-import { easterEggTerminal, type TerminalOutput } from "@/ai/flows/easter-egg-terminal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "./ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+
+type TerminalOutput = {
+  response: string;
+};
+
+const terminalResponses: Record<string, string> = {
+  help: "Available commands: help, about, time, joke.",
+  about: "This portfolio hides a playful AI terminal for secret interactions.",
+  joke: "Why do programmers prefer dark mode? Because light attracts bugs.",
+};
+
+const easterEggTerminal = async ({
+  command,
+}: {
+  command: string;
+}): Promise<TerminalOutput> => {
+  const normalized = command.toLowerCase();
+  let response = terminalResponses[normalized];
+
+  if (!response) {
+    if (normalized === "time") {
+      response = `Current developer time is ${new Date().toLocaleTimeString()}.`;
+    } else {
+      response = `Command '${command}' is not recognized. Try 'help' for available commands.`;
+    }
+  }
+
+  await new Promise((resolve) => setTimeout(resolve, 300));
+
+  return { response };
+};
 
 type HistoryItem = {
   type: "command" | "response" | "system";
   content: string | TerminalOutput;
 };
-
 export function EasterEggTerminal() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -40,7 +75,11 @@ export function EasterEggTerminal() {
       });
       if (history.length === 0) {
         setHistory([
-          { type: "system", content: "Welcome to the interactive terminal. Type 'help' for a list of commands." },
+          {
+            type: "system",
+            content:
+              "Welcome to the interactive terminal. Type 'help' for a list of commands.",
+          },
         ]);
       }
     }
@@ -55,13 +94,15 @@ export function EasterEggTerminal() {
       inputRef.current?.focus();
     }
   }, [isOpen]);
-  
+
   useEffect(() => {
     if (scrollAreaRef.current) {
-        const viewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
-        if (viewport) {
-            viewport.scrollTop = viewport.scrollHeight;
-        }
+      const viewport = scrollAreaRef.current.querySelector(
+        "div[data-radix-scroll-area-viewport]"
+      );
+      if (viewport) {
+        viewport.scrollTop = viewport.scrollHeight;
+      }
     }
   }, [history]);
 
@@ -70,7 +111,10 @@ export function EasterEggTerminal() {
     if (!inputValue.trim() || isProcessing) return;
 
     const command = inputValue.trim();
-    const newHistory: HistoryItem[] = [...history, { type: "command", content: command }];
+    const newHistory: HistoryItem[] = [
+      ...history,
+      { type: "command", content: command },
+    ];
     setHistory(newHistory);
     setInputValue("");
     setIsProcessing(true);
@@ -98,14 +142,24 @@ export function EasterEggTerminal() {
             <Terminal className="w-4 h-4 text-primary" />
             <DialogTitle>SECRET_TERMINAL.EGG</DialogTitle>
           </div>
-          <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-6 w-6">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsOpen(false)}
+            className="h-6 w-6"
+          >
             <X className="w-4 h-4" />
           </Button>
         </DialogHeader>
-        
-        <DialogDescription className="sr-only">A hidden terminal for interacting with the portfolio's AI.</DialogDescription>
-        
-        <ScrollArea className="flex-1 p-4 text-sm font-mono" ref={scrollAreaRef}>
+
+        <DialogDescription className="sr-only">
+          A hidden terminal for interacting with the portfolio's AI.
+        </DialogDescription>
+
+        <ScrollArea
+          className="flex-1 p-4 text-sm font-mono"
+          ref={scrollAreaRef}
+        >
           {history.map((item, index) => (
             <div key={index} className="mb-2">
               {item.type === "command" && (
@@ -117,17 +171,23 @@ export function EasterEggTerminal() {
               {item.type === "response" && (
                 <div className="flex items-start">
                   <Bot className="w-4 h-4 text-accent mr-2 mt-1 shrink-0" />
-                  <p className="whitespace-pre-wrap text-foreground/90">{(item.content as TerminalOutput).response}</p>
+                  <p className="whitespace-pre-wrap text-foreground/90">
+                    {(item.content as TerminalOutput).response}
+                  </p>
                 </div>
               )}
               {item.type === "system" && (
-                <p className="text-muted-foreground italic">{item.content as string}</p>
+                <p className="text-muted-foreground italic">
+                  {item.content as string}
+                </p>
               )}
             </div>
           ))}
-          {isProcessing && <div className="text-primary animate-pulse">Processing...</div>}
+          {isProcessing && (
+            <div className="text-primary animate-pulse">Processing...</div>
+          )}
         </ScrollArea>
-        
+
         <div className="p-2 border-t border-primary/30">
           <form onSubmit={handleSubmit} className="flex items-center">
             <span className="text-primary mr-2">$</span>
